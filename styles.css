@@ -1,0 +1,230 @@
+/* --- NEW styles.css (FIXED) --- */
+
+:root {
+    --color-correct: #538d4e;
+    --color-present: #b59f3b;
+    --color-absent: #3a3a3c;
+    --color-text-light: #ffffff;
+    --color-text-dark: #1a1a1b;
+    --color-border-light: #d3d6da;
+    --color-border-dark: #878a8c;
+    --color-key-bg: #d3d6da;
+    --background-color: #ffffff;
+    --modal-bg: rgba(0,0,0,0.6);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    height: 100%;
+    overflow: hidden; /* Prevents bouncing on mobile */
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    touch-action: manipulation;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 500px; /* Max width on desktop */
+    margin: 0 auto;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    margin: 0.2em 0 0.5em 0;
+    color: var(--color-text-dark);
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+#game-board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 5px;
+    width: 100%;
+    max-width: 330px; /* Controls grid size for the border effect */
+    margin: 0 auto;
+    height: 100%;
+    max-height: 400px; /* Prevents grid from being too tall */
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.row.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translateX(-1px); }
+    20%, 80% { transform: translateX(2px); }
+    30%, 50%, 70% { transform: translateX(-4px); }
+    40%, 60% { transform: translateX(4px); }
+}
+
+/* --- Letter Flip Animation Styles --- */
+.letter {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.letter.flip {
+    transform: rotateX(180deg);
+}
+
+.letter .front, .letter .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    font-weight: bold;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-sizing: border-box;
+}
+
+.letter .front {
+    border: 2px solid var(--color-border-light);
+    color: var(--color-text-dark);
+}
+
+.letter.filled .front {
+    border-color: var(--color-border-dark);
+}
+
+.letter .back {
+    transform: rotateX(180deg);
+    color: var(--color-text-light);
+    border: 2px solid transparent;
+}
+
+.letter.correct .back { background-color: var(--color-correct); border-color: var(--color-correct); }
+.letter.present .back { background-color: var(--color-present); border-color: var(--color-present); }
+.letter.absent .back { background-color: var(--color-absent); border-color: var(--color-absent); }
+
+/* Keyboard styles */
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.key {
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    height: 58px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--color-key-bg);
+    color: var(--color-text-dark);
+    flex-grow: 1; /* All keys grow equally by default */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+    transition: background-color 0.2s;
+}
+
+.key.correct { background-color: var(--color-correct); color: var(--color-text-light); }
+.key.present { background-color: var(--color-present); color: var(--color-text-light); }
+.key.absent { background-color: var(--color-absent); color: var(--color-text-light); }
+
+.key:active { background-color: #c0c3c6; }
+
+.special-key {
+    flex-grow: 1.5; /* Makes Enter and Delete wider */
+}
+
+/* Specific styling for the new keyboard layout */
+.key-row:nth-child(2) {
+    padding: 0 5%; /* Indent the middle row */
+    box-sizing: border-box;
+}
+.key-row:nth-child(3) .special-key { /* Target Enter key specifically */
+    flex-grow: 2;
+}
+
+#message {
+    height: 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-dark);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modal-bg);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.close { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+.close:hover, .close:focus { color: black; text-decoration: none; cursor: pointer; }

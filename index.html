@@ -1,0 +1,125 @@
+<!-- --- NEW index.html (FIXED) --- -->
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Woordle-4-Druif</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Woordle-4-Druif</h1>
+        </header>
+        
+        <main>
+            <div id="game-board">
+                <!-- Each letter tile now has a front and back for the flip animation -->
+                <div class="row">
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                </div>
+                <div class="row">
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                </div>
+                <div class="row">
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                </div>
+                <div class="row">
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                </div>
+                <div class="row">
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                </div>
+                <div class="row">
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                    <div class="letter"><div class="front"></div><div class="back"></div></div>
+                </div>
+            </div>
+            <p id="message"></p>
+        </main>
+        
+        <div id="keyboard">
+            <!-- Row 1 -->
+            <div class="key-row">
+                <button class="key">Q</button>
+                <button class="key">W</button>
+                <button class="key">E</button>
+                <button class="key">R</button>
+                <button class="key">T</button>
+                <button class="key">Y</button>
+                <button class="key">U</button>
+                <button class="key">I</button>
+                <button class="key">O</button>
+                <button class="key">P</button>
+            </div>
+            <!-- Row 2 -->
+            <div class="key-row">
+                <button class="key">A</button>
+                <button class="key">S</button>
+                <button class="key">D</button>
+                <button class="key">F</button>
+                <button class="key">G</button>
+                <button class="key">H</button>
+                <button class="key">J</button>
+                <button class="key">K</button>
+                <button class="key">L</button>
+                <button class="key special-key" id="delete">
+                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                        <path fill="currentColor" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-3 12.59L17.59 17 14 13.41 10.41 17 9 15.59 12.59 12 9 8.41 10.41 7 14 10.59 17.59 7 19 8.41 15.41 12 19 15.59z"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Row 3 -->
+            <div class="key-row">
+                <button class="key">Z</button>
+                <button class="key">X</button>
+                <button class="key">C</button>
+                <button class="key">V</button>
+                <button class="key">B</button>
+                <button class="key">N</button>
+                <button class="key">M</button>
+                <button class="key special-key" id="enter">Enter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal HTML -->
+    <div id="winModal" class="modal">
+        <div class="modal-content">
+            <span class="close">×</span>
+            <p id="winMessage"> Geen flauw benul hoe ik het zonder dit wezen ga volhouden </a> <a href="https://open.spotify.com/playlist/01EyAyGQX6UvM8mTaU5cDp?si=XdZj63ETQvyzNbjosK7vUQ&pi=e-_jyU-UpRRrOJ" target="_blank"> Two Grapes Playlist 🎶 </a></p>
+            <p>Het woord was: <span id="correctWord"></span></p>
+            <p><a href="https://leolover2000.github.io/Woordle4Druif6/" target="_blank">Woordle6</a></p>
+            <img src="IMG_2218.jpeg" alt="Win message image" width="250">
+            <p> Dagen tot terugkeer 🍇: </p><p id="countdown">00d 00h 00m 00s</p> <!-- Countdown Timer Element -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
